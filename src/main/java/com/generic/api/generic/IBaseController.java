@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.generic.api.response.APIResponse;
+
 @RestController
 @RequestMapping("/{entity}")
 public interface IBaseController {
@@ -24,6 +26,6 @@ public interface IBaseController {
 	public <T> ResponseEntity<?> update(@RequestBody IEntity<T> entity);
 	
 	@DeleteMapping("/delete/id")
-	public <T> void delete(@PathVariable T id);
+	public <T> ResponseEntity<?> delete(@PathVariable T id);
 
 }

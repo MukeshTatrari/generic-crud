@@ -9,40 +9,39 @@ import org.springframework.http.ResponseEntity;
 import com.generic.api.generic.BaseService;
 import com.generic.api.generic.IBaseController;
 import com.generic.api.generic.IEntity;
-import com.generic.api.model.Book;
+import com.generic.api.model.Student;
 import com.generic.api.response.APIResponse;
 import com.generic.api.response.ResponseStatus;
 
-
-public class BookController implements IBaseController{
+public class StudentController implements IBaseController{
 	
 	@Autowired
-	private BaseService<Book, Integer> bookService;
+	private BaseService<Student, String> studentService;
 
 	@Override
 	public <T> ResponseEntity<APIResponse> getEntity(T entityId) {
 		
-		Optional<Book> book = bookService.getById((Integer) entityId);
-		return new ResponseEntity<>(new APIResponse(book, ResponseStatus.SUCCESS), HttpStatus.OK);
+		Optional<Student> student = studentService.getById((String) entityId);
+		return new ResponseEntity<>(new APIResponse(student, ResponseStatus.SUCCESS), HttpStatus.OK);
 
 	}
 
 	@Override
 	public <T> ResponseEntity<?> save(IEntity<T> entity) {
-		Book book = bookService.save((Book) entity);
-		return new ResponseEntity<>(new APIResponse(book, ResponseStatus.SUCCESS), HttpStatus.CREATED);
+		Student student = studentService.save((Student) entity);
+		return new ResponseEntity<>(new APIResponse(student, ResponseStatus.SUCCESS), HttpStatus.CREATED);
 	}
 
 	@Override
 	public <T> ResponseEntity<?> update(IEntity<T> entity) {
-		Book book= bookService.update((Book) entity);;
-		return new ResponseEntity<>(new APIResponse(book, ResponseStatus.SUCCESS), HttpStatus.OK);
+		Student student= studentService.update((Student) entity);;
+		return new ResponseEntity<>(new APIResponse(student, ResponseStatus.SUCCESS), HttpStatus.OK);
 	}
 
 	@Override
 	public <T> ResponseEntity<APIResponse> delete(T entityId) {
 	
-		bookService.delete((Integer) entityId);
+		studentService.delete((String) entityId);
 		return new ResponseEntity<>(new APIResponse("Deleted Successfully", ResponseStatus.SUCCESS), HttpStatus.OK);
 		
 	}
