@@ -1,7 +1,7 @@
 package com.generic.api.generic;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
+import org.springframework.data.repository.NoRepositoryBean;
 
-@Repository
-public interface IBaseRepository<T , ID > extends JpaRepository<T, ID>{}
+@NoRepositoryBean
+public interface IBaseRepository<T extends IEntity<T> , ID > extends JpaRepository<T, ID>{}

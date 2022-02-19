@@ -1,6 +1,7 @@
 package com.generic.api.model;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -15,17 +16,14 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "Book")
-public class Book implements IEntity<Integer>{
+public class Book extends IEntity<Book>{
 	
 	@Id
-	private Integer bookId;
+	@GeneratedValue
+	private String bookId;
 	private String name;
 	private String isbn;
 	private String author;
-	
-	@Override
-	public Integer entityId() {
-		return this.getBookId();
-	}
+
 
 }

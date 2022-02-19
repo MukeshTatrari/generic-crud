@@ -2,18 +2,24 @@ package com.generic.api.generic;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 public interface IBaseService<T, ID> {
 
-    T findByName(String name);
+
+	T findByName(String name);
 
     List<T> findAll();
 
     T findById(ID id);
 
-    T save(T object);
+    T save(T entity);
 
-    void delete(T object);
+    void delete(T entity);
+    
+    T update(T entity);
 
-    void deleteById(ID id);
-
+    void deleteById(String id);
+    
+    String serviceName();
 }

@@ -2,7 +2,8 @@ package com.generic.api.generic;
 
 import java.io.Serializable;
 
-public interface IEntity<T> extends Serializable {
+import javax.persistence.MappedSuperclass;
 
-	public T entityId();
+@MappedSuperclass
+public class IEntity<T> implements Serializable {
 }
