@@ -1,9 +1,12 @@
 package com.generic.api.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.GenericGenerator;
 
 import com.generic.api.generic.IEntity;
 
@@ -20,7 +23,9 @@ import lombok.NoArgsConstructor;
 public class Person extends IEntity<Person>{
 	
 	@Id
-	@GeneratedValue
+	@GeneratedValue(generator = "UUID")
+	@GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
+	@Column(updatable = false, nullable = false)
 	private String personId;
 	private String name;
 	 
