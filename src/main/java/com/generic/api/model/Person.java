@@ -1,33 +1,46 @@
 package com.generic.api.model;
 
-import javax.persistence.Column;
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.GenericGenerator;
-
-import com.generic.api.generic.IEntity;
+import com.generic.api.generic.GenericEntity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 
 @Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "Person")
-public class Person extends IEntity<Person>{
-	
+public class Person implements Serializable, GenericEntity<Person> {
+
 	@Id
-	@GeneratedValue(generator = "UUID")
-	@GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
-	@Column(updatable = false, nullable = false)
-	private String personId;
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long personId;
 	private String name;
-	 
+
+	@Override
+	public void update(Person source) {
+		this.name = source.getName();
+	}
+
+	@Override
+	public Long getId() {
+		return this.getPersonId();
+	}
+
+	@Override
+	public Person createNewInstance() {
+		Person newInstance = new Person();
+		newInstance.update(this);
+		return newInstance;
+	}
 
 }

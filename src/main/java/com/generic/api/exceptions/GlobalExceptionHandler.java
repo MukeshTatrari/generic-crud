@@ -131,6 +131,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 		LOG.error("HttpServerErrorException occured {} ", ex.getLocalizedMessage());
 		return new ResponseEntity<>(apiError, HttpStatus.INTERNAL_SERVER_ERROR);
 	}
+	
 
 	@ExceptionHandler({ UBSRuntimeException.class })
 	public ResponseEntity<Object> handleUBSRuntimeException(UBSRuntimeException ex, WebRequest request) {
