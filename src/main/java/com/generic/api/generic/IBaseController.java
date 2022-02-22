@@ -19,7 +19,7 @@ import com.generic.api.response.APIResponse;
 import com.generic.api.response.ResponseStatus;
 
 @RestController
-@RequestMapping("/")
+@RequestMapping("/api/")
 public class IBaseController {
 
 	@Resource()
